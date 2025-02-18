@@ -2,6 +2,7 @@ package operation
 
 import (
 	"capital-gains/types"
+	"math"
 )
 
 const (
@@ -68,7 +69,7 @@ func (o *OperationsManager) ExecuteSell(transaction Transaction) float64 {
 	gain := o.Gain(transaction)
 
 	if gain < 0 {
-		o.Loss += gain
+		o.Loss += math.Abs(gain)
 		o.DeduceValues(transaction.Quantity, o.Average())
 		return 0.0
 	}
@@ -85,7 +86,7 @@ func (o *OperationsManager) ExecuteSell(transaction Transaction) float64 {
 
 	if o.Loss > 0.0 {
 		if gain <= o.Loss {
-			// pensar se o gain for > MINIMUN_TAX devo cobrar imposto também?
+			// think about: if gain >= MINIMUN_TAX, should it pay tax?
 			o.Loss -= gain
 			return 0.0
 		}

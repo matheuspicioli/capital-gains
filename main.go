@@ -10,6 +10,16 @@ import (
 )
 
 func main() {
+	stat, err := os.Stdin.Stat()
+	if err != nil {
+		panic(err)
+	}
+
+	if stat.Size() <= 0 {
+		fmt.Println("Stdin not provided")
+		return
+	}
+
 	reader := bufio.NewReaderSize(os.Stdin, 32)
 	var cliOperations []types.OperationInputCLI
 
