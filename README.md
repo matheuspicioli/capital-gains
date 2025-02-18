@@ -1,5 +1,30 @@
 # EN-US
 
+## What is
+
+The objective of this exercise is to implement a command-line interface (CLI) program that calculates the tax to be paid on profits or losses from stock market operations.
+
+How should the program work?
+Input: The program will receive lists, one per line, of stock market operations in JSON format through standard input (stdin).
+
+Example input: `[{"operation":"buy", "unit-cost":10.00, "quantity": 10000},
+{"operation":"sell", "unit-cost":20.00, "quantity": 5000}]
+[{"operation":"buy", "unit-cost":20.00, "quantity": 10000},
+{"operation":"sell", "unit-cost":10.00, "quantity": 5000}]`
+
+Each line is an independent simulation; your program should not retain the state obtained from one line for the others.
+
+The last line of the input will be an empty line.
+
+Output: For each input line, the program must return a list containing the tax paid for each received operation. The elements of this list should be encoded in JSON format, and the output should be returned through standard output (stdout).
+
+Example output: `[{"tax":0.00}, {"tax":10000.00}]
+[{"tax":0.00}, {"tax":0.00}]`
+
+The list returned by the program must have the same size as the list of operations processed in the input.
+
+For example, if three operations (buy, buy, sell) are processed, the program's output should be a list with three values representing the tax paid on each operation.
+
 ## Technical Decisions
 
 ### Architecture
@@ -46,6 +71,37 @@ The project includes unit tests, which can be executed with the following comman
 `os.Stdin` and `os.Stdout` were chosen because they are native to Golang and efficiently handle streams. This allows processing large files without overwhelming memory.
 
 # PT-BR
+
+## O que é
+
+O objetivo deste exercício é implementar um programa de linha de comando (CLI) que calcula o imposto a ser
+pago sobre lucros ou prejuízos de operações no mercado financeiro de ações
+
+Como o programa deve funcionar?
+
+Entrada: O programa vai receber listas, uma por linha, de operações do mercado financeiro de ações em formato
+json através da entrada padrão (stdin)
+
+Exemplo entrada: `[{"operation":"buy", "unit-cost":10.00, "quantity": 10000},
+{"operation":"sell", "unit-cost":20.00, "quantity": 5000}]
+[{"operation":"buy", "unit-cost":20.00, "quantity": 10000},
+{"operation":"sell", "unit-cost":10.00, "quantity": 5000}]`
+
+Cada linha é uma simulação independente, seu programa não deve manter o estado obtido em uma linha
+para as outras.
+
+A última linha da entrada será uma linha vazia.
+
+Saída: para cada linha da entrada, o programa deve retornar uma lista contendo o imposto pago para cada operação
+recebida. Os elementos desta lista devem estar codificados em formato json e a saída deve ser retornada
+através da saída padrão (stdout).
+
+Exemplo saída: `[{"tax":0.00}, {"tax":10000.00}]
+[{"tax":0.00}, {"tax":0.00}]`
+
+A lista retornada pelo programa deve ter o mesmo tamanho da lista de operações processadas na entrada.
+Por exemplo, se foram processadas três operações (buy, buy, sell), o retorno do programa deve ser uma lista
+com três valores que representam o imposto pago em cada operação.
 
 ## Decisões Técnicas
 
